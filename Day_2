@@ -1,0 +1,19 @@
+## Write a program to find sum all Natural numbers from 1 to N where you have to take N as input from user
+
+def sum(n):
+    if n <= 1:
+        return n
+    else:
+        return n + sum(n-1)
+
+Num = int(input("Enter a Number: "))
+if Num < 0:
+    print("Can't sum Negative Numbers")
+else:
+    print("The sum is", sum(Num))
+    
+    
+
+## ## Write a program to find simple interest on a principal amount A at interest rate of R for time period T. 
+## Take A, R and T as input from the user.
+
