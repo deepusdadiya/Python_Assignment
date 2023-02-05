@@ -1,0 +1,739 @@
+## 1. Days to go for a particular date in future.
+
+from datetime import datetime
+current_date = date.today() 
+date_1 = input("please enter date in MM-DD-YYYY Format:")
+future_date = datetime.strptime(date_1, '%m-%d-%Y').date()
+def Num_of_Days(current_date, future_date):
+    return (future_date-current_date).days    
+print(Num_of_Days(current_date, future_date), "days")
+
+
+
+## 2. Hours to go for a particular time.
+
+from datetime import datetime
+time_1 = datetime.now().time()
+current_time = time_1.strftime("%H:%M:%S")
+current_time_1 = datetime.strptime(current_time, '%H:%M:%S')
+print('Start Time:', current_time_1)
+time_2 = input("please enter future time in HH:MM:SS Format:")
+future_time_1 = datetime.strptime(time_2, '%H:%M:%S')
+print('Future Time:', future_time_1)
+difference = future_time_1 - current_time_1
+sec = difference.total_seconds()
+min = sec / 60
+hours = sec / (60 * 60)
+print('Difference in hours:', hours)
+
+
+
+## 3. Marks of a student are given in a file, calculate the average marks.
+
+import pandas as pd
+df = pd.read_csv('C:\Users\Desktop\Student_Data.csv')
+df2 = df["Marks"].mean()
+print(df2)
+
+
+
+## 4. Names are given in a file, check whether a particular name is present.
+
+File_name = 'file.txt'
+Name = 'Deep'
+file = open("file.txt")
+if Name in file.read(): 
+    print('Value is in the file')
+    
+    
+    
+## 5. A dict contains events and corresponding dates, given a date, find out what events have occurred and what are still pending.
+
+import datetime
+date1 = datetime.datetime.strptime('01/01/2022', "%d/%m/%Y").date()
+date2 = datetime.datetime.strptime('14/02/2022', "%d/%m/%Y").date()
+date3 = datetime.datetime.strptime('18/03/2022', "%d/%m/%Y").date()
+date4 = datetime.datetime.strptime('15/04/2022', "%d/%m/%Y").date()
+date5 = datetime.datetime.strptime('03/05/2022', "%d/%m/%Y").date()
+date6 = datetime.datetime.strptime('05/06/2022', "%d/%m/%Y").date()
+date7 = datetime.datetime.strptime('10/07/2022', "%d/%m/%Y").date()
+date8 = datetime.datetime.strptime('11/08/2022', "%d/%m/%Y").date()
+date9 = datetime.datetime.strptime('08/09/2022', "%d/%m/%Y").date()
+date10 = datetime.datetime.strptime('24/10/2022', "%d/%m/%Y").date()
+date11 = datetime.datetime.strptime('14/11/2022', "%d/%m/%Y").date()
+date12 = datetime.datetime.strptime('25/12/2022', "%d/%m/%Y").date()
+
+events = {
+            date1: 'New Year',
+            date2: 'Valentines Day',
+            date3: 'Holi',
+            date4: 'Good Friday',
+            date5: 'Ramdan',
+            date6: 'Environment Day',
+            date7: 'Eid',
+            date8: 'Rakhi',
+            date9: 'Onam',
+            date10: 'Diwali',
+            date11: 'Childrens Day',
+            date12: 'Christmas',
+}
+
+a = input("Please Enter date in dd/mm/yyyy format): ")
+
+date_input = datetime.datetime.strptime(a, "%d/%m/%Y").date()
+
+occured = []
+pending = []
+
+for date, day in events.items():
+    if (date <= date_input):
+        occured.append(day)
+    else:
+        pending.append(day)
+        
+print('Occured Events: ', occured)
+print()
+print('Pending Events: ', pending)
+
+
+
+## 6. Given a file with numbers , calculate mean, median and mode.
+
+import pandas as pd
+df = pd.read_csv ("File name.csv")
+_mean_ = df['Numbers'].mean()
+_median_ = df['Numbers'].median()
+_mode_ = df['Numbers'].mode()
+
+
+
+## 7. Given a file with strings, calculate the permutations.
+
+def listtoString(List): 
+    return ''.join(List)
+def permute(a, l, r): 
+    if l==r: 
+        print (listtoString(a))
+    else: 
+        for i in range(l,r): 
+            a[l], a[i] = a[i], a[l] 
+            permute(a, l+1, r) 
+            a[l], a[i] = a[i], a[l]
+string = "ABC"
+n = len(string) 
+a = list(string) 
+permute(a, 0, n)
+
+
+
+## 8. Take user input and write it to a file.
+
+print("What is your first name?")
+input_1 = input()
+print("What is your last name?")
+input_2 = input()
+file_1 = open('text.txt', 'a')
+file_1.write(input_1)
+file_1.write(" ")
+file_1.write(input_2)
+file_1.write("\n")
+file_1.close()
+
+
+
+## 9. Fetch the data from a url and save it to a file.
+
+import requests
+URL = "https://github.com/Jio-Training-2022/python-training/blob/main/days/day-13-UnitedStates.md"
+response = requests.get(URL)
+open("github.ico", "wb").write(response.content)
+
+
+
+## 10. Fetch the data from a url and calculate the number of strings in it.
+
+import requests
+from bs4 import BeautifulSoup
+url = 'https://www.troyhunt.com/the-773-million-record-collection-1-data-reach/'
+res = requests.get(url)
+html_page = res.content
+soup = BeautifulSoup(html_page, 'html.parser')
+text = soup.find_all(text=True)
+output = ''
+for t in text:
+    output += '{} '.format(t)
+print(output)
+
+
+
+## 11. Calculate the weight of the word banana. ( weight = sum of ascii values of all characters )
+
+test_word = ["banana"]
+ascii_value = []
+for sub in test_word:
+    ascii_sum = 0     
+    for ele in sub:
+        ascii_sum += (ord(ele) - 96)     
+    ascii_value.append(ascii_sum)
+print("Position Summation List : " + str(ascii_value))
+
+
+
+## 12. Calculate how many times a string occurs in a given file.
+
+file1 = open("23PGAI0077_Assignment_4.txt")
+text = file1.readlines()
+print(len(text))
+
+
+
+## 13. Given a file create its zip archive.
+
+from zipfile import ZipFile
+zipObj = ZipFile('sample.zip', 'w')
+zipObj.write('23PGAI0077_Assignment_4.txt')
+zipObj.write('Homework_Day_2.py')
+zipObj.write('Homework_Day_3.ipynb')
+zipObj.close()
+
+
+
+## 14. Delete a file.
+
+import os
+if os.path.exists("Demo_file.docx"):
+  os.remove("Demo_file.docx")
+else:
+  print("The file does not exist")
+  
+  
+
+## 15. Print all the files in a given directory.
+
+path = "C:/Users/DELL/OneDrive/Desktop/Quarter_1/Python"
+dir_list = os.listdir(path)
+print(dir_list)
+
+
+
+## 16. Given a number in binary, print its hex , octa and binary representation.
+
+def binToHexa(n):
+    num = int(n, 2)
+    hex_num = hex(num)
+    return(hex_num)
+    
+
+
+## 17. Solve the fizz buzz problem.
+
+number = int(input("Please enter a natural number: "))
+for i in range(1, number):
+    if i % 3 == 0 and i % 5 ==0:
+        print("FizzBuzz")
+    elif i % 3 == 0:
+        print("Fizz")
+    elif i % 5 == 0:
+        print("Buzz")
+    else:
+        print(i)
+  
+  
+  
+## 18. Encode a string by adding 10 to all the ascii characters of that string and decode it back.
+ 
+a_string = input("Please enter a string: ")
+ASCII_values = [ord(character) for character in a_string]
+New_ASCII = [x + 10 for x in ASCII_values]
+string = ""
+for val in New_ASCII:
+    string = string + chr(val)    
+print(str(string))
+
+
+
+## 19. Use a function from another file.
+
+# Another file: test.py
+def displayText():
+    print( "Python")
+from test import displayText
+
+
+
+## 20. class Car:
+    def __init__(self, color, style):
+        self.color = color
+        self.style = style
+    def showDescription(self):
+        print("This car is a", self.color, self.style)
+    def changeColor(self, color):
+        self.color = color
+        
+
+
+## 21. Write a class to represent a Laptop.
+
+class Laptop:
+    def __init__(self, RAM, ROM, display, make_wifi_call, play_game):
+        self.RAM = RAM
+        self.ROM = ROM
+        self.display = display
+        self.make_wifi_call = make_wifi_call
+        self.play_game = play_game
+    def RAM_description(self):
+        print("Laptop with", self.RAM)
+    def ROM_description(self):
+        print("Laptop with", self.ROM)
+    def display_specification(self):
+        print("Laptop with", self. display)
+Laptop1 = Laptop(8, 256, 14,"YES", "YES")
+print(Laptop1.RAM)
+print(Laptop1.ROM)
+        
+        
+        
+## 22. Write a class to represent an ATM machine.
+
+class ATM:
+    balance = 5000
+    def login(self,pin):
+        if pin == 1111:
+            return True
+        else:
+            return False
+    def credit(self,amt):
+        self.balance += amt
+    def debit(self,amt):
+        self.balance -= amt
+    def display(self):
+        print("Current balance is "+str(self.balance))
+        
+        
+        
+## 23. Write a class to represent a school.
+
+class School:
+    def __init__(self, name, address):
+        self.name = name
+        self.address = address
+    def classroom(self, classroom):
+        print("No. of classroom")
+p1 = School("Jio Institute", "Ulwe")
+print(p1.name)
+print(p1.address)
+
+
+
+## 24. Write a class to represent a company.
+
+class Company:
+    def __init__(self, Product, Departments, Profit, Revenue):
+        self.Product = Product
+        self.Departments = Departments
+        self.Profit = Profit
+        self.Revenue = Revenue
+    def product_description(self):
+        print("Company makes", self.Product)
+    def No_of_Departments(self):
+        print("Company with", self.Departments, "Departments")
+    def profit_earned(self):
+        print("Company earned", self. profit)
+Company1 = Company("Printer", 5, 2000000, 5000000)
+print(Company1.Profit)
+print(Company1.Departments)
+
+
+
+## 25. Write a class to represent a Journey / Trip.
+
+class Journey:
+    def __init__(self, Destination, Departure, Arrival, Expense):
+        self.Destination = Destination
+        self.Departure = Departure
+        self.Arrival = Arrival
+        self.Expense = Expense
+    def jorney_destination(self):
+        print("Journey to", self.Destination)
+    def Departure_time(self):
+        print("Journey started at", self.Departure)
+    def Arrival_time(self):
+        print("Reached at", self. Arrival)
+Journey1 = Journey("Kashmir", "5:30", "8:00", 50000)
+print(Journey1.Destination)
+print(Journey1.Departure)
+
+
+
+## 26. Persists the data of a class in a table in a database. ( Postgres )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 27. use dir function to print all the available functions in the following modules on standard output.
+
+print('datetime.datetime: ', dir(datetime.datetime))
+print()
+print('datetime.date: ', dir(datetime.date))
+print()
+print('datetime.timedelta: ', dir(datetime.timedelta))
+print()
+print('calendar: ', dir(calendar))
+print()
+print('math: ', dir(math))
+print()
+print('cmath: ', dir(cmath))
+print()
+print('collections: ', dir(collections))
+print()
+print('email: ', dir(email))
+print()
+print('gc: ', dir(gc))
+print()
+print('hashlib: ', dir(hashlib))
+print()
+print('html: ', dir(html))
+print()
+print('http: ', dir(http))
+print()
+print('io: ', dir(io))
+print()
+print('json: ', dir(json))
+print()
+print('logging: ', dir(logging))
+print()
+print('pdb: ', dir(pdb))
+print()
+print('random: ', dir(random))
+print()
+print('runpy: ', dir(runpy))
+print()
+print('re: ', dir(re))
+print()
+print('ssl: ', dir(ssl))
+print()
+print('statistics: ', dir(statistics))
+print()
+print('subprocess: ', dir(subprocess))
+print()
+print('sys: ', dir(sys))
+print()
+print('time: ', dir(time))
+print()
+print('tkinter: ', dir(tkinter))
+print()
+print('types: ', dir(types))
+print()
+print('typing: ', dir(typing))
+print()
+print('uuid: ', dir(uuid))
+print()
+print('urllib: ', dir(urllib))
+
+
+
+## 28. Given the names of countries - states in a json file, load the file , read the json objects and then print the cities against a country.
+
+import json
+file_ = open("Countries_States.json","r")
+data = json.load(file_)
+for i in data:
+    print(i)
+file_.close()
+
+with open("Countries_States.json") as f:
+    data = json.load(f)
+data.append({
+        "name": "Afghanistan",
+        "state": "AF",
+        "city": "ABCD"
+    })
+data.append({
+        "name": "India",
+        "state": "MH",
+        "city": "Navi Mumbai"
+    })
+with open("Countries_States.json", 'w') as f:
+    json.dump(data, f,indent=2)
+file_.close()
+
+
+
+## 29. Given the name strings in a file, read all the names and one-hot encod all the names and find the total sum.
+
+!pip install sklearn
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import OneHotEncoder
+enc = OneHotEncoder(handle_unknown='ignore')
+enc_df = pd.DataFrame(enc.fit_transform(bridge_df[['Bridge_Types_Cat']]).toarray())
+bridge_df = bridge_df.join(enc_df)
+bridge_df
+
+
+
+## 30. Given the name strings in a file, read all the names, convert them to corresponding ascii characters and calculate the sum.
+
+import csv
+with open('Name_of_students.csv', mode ='r') as file:
+    csvFile = csv.reader(file)
+    a = []
+    print('File Content')
+    for lines in csvFile:
+        print(lines)
+        a.append(lines[0])
+    print()
+    print('Names',a)
+    print()
+    
+    b = 0
+    for name in a:
+        for i in range(len(name)):
+            b += ord(name[i])
+            
+    print('Sum of ASCII characters: ', b)
+
+
+## 31. Given a user_input as a string, calculate its md5 hash.
+
+import hashlib
+a = input('Enter string: ')
+user = 'Deep'
+h = hashlib.md5(a.encode())
+h2 = h.hexdigest()
+print('md5 hash equivalent: ', h2)
+
+
+
+## 32. Given numbers ( in string format ) in a file, read them and create a numpy array.
+
+import numpy as np
+a = []
+with open('Marks.csv', mode ='r') as file:
+    csvFile = csv.reader(file)
+    print('File Content')
+    for lines in csvFile:
+        print(lines)
+        if (lines[0] != 'Marks'):
+            a.append(float(lines[0]))
+    b = np.array(a)
+    print()
+    print('Marks',b)
+    print(type(b))
+
+
+
+## 33. Given numbers ( in string format ) in a file, read them and create a pandas data frame object.
+
+import pandas as pd
+file_1 = open("df.txt")
+lines=[]
+for line in file_1:
+    lines.append(int(line.split('\n')[0]))
+print("File_1 text: ", lines)
+df = pd.DataFrame(data = lines)
+display(df)
+
+
+
+## 34. Given number ( in string format ) in a file, read them and create a pandas series.
+
+file_1 = open("df.txt")
+lines = []
+for line in file_1:
+    lines.append(int(line.split('\n')[0]))
+print("File_1 text: ", lines)
+panda_series = pd.Series(lines)
+print(panda_series)
+
+
+
+## 35. Construct a 2x5 numpy matrix by taking all the numbers as input from user.
+
+numpy_matrix = []
+for i in range(10):
+    numpy_input = input("Please Enter number {}: ".format(i+1))
+    numpy_matrix.append(numpy_input)
+final_numpy_matrix = np.array(numpy_matrix).reshape(2,5)
+print(final_numpy_matrix)
+
+
+
+## 36. Convert the above numpy matrix to a pandas data frame.
+
+df = pd.DataFrame(final_numpy_matrix)
+display(df)
+
+
+
+## 37. Save the above data frame as a csv file.
+
+df.to_csv('Data_Frame.csv')
+
+
+
+## 38. Save the above data frame as an excel file.
+
+df.to_excel("Data_Frame_Excel.xlsx")
+
+
+
+## 39. Replicate the same data in the excel file across multiple sheets with different names.
+
+with pd.ExcelWriter('Data_Frame_Excel_Sheet.xlsx') as writer:  
+    df.to_excel(writer, sheet_name='Sheet_name_1')
+    df.to_excel(writer, sheet_name='Sheet_name_2')
+    
+    
+
+## 40. Create an excel sheet in google-sheets, read it via python and print the data on screen.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 41 - print a picture using matplotlib.
+
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+img_file = mpimg.imread('IMG_20221007_140033_10.jpg')
+imgplot = plt.imshow(img_file)
+plt.show()
+
+
+
+## 42. Draw sin wave using matplotlib.
+
+x = np.linspace(-np.pi,np.pi,1000)
+y = np.sin(x)
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+ax.spines['left'].set_position('center')
+ax.spines['bottom'].set_position('center')
+ax.spines['right'].set_color('none')
+ax.spines['top'].set_color('none')
+ax.xaxis.set_ticks_position('bottom')
+ax.yaxis.set_ticks_position('left')
+plt.plot(x,y, 'b-')
+plt.show()
+
+
+
+## 43. Draw cos wave using matplotlib.
+
+x = np.linspace(-np.pi,np.pi,1000)
+y = np.cos(x)
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+ax.spines['left'].set_position('center')
+ax.spines['bottom'].set_position('center')
+ax.spines['right'].set_color('none')
+ax.spines['top'].set_color('none')
+ax.xaxis.set_ticks_position('bottom')
+ax.yaxis.set_ticks_position('left')
+plt.plot(x,y, 'b-')
+plt.show()
+
+
+
+## 44. Draw step function using matplotlib.
+
+import matplotlib.pyplot as plt
+import numpy as np  
+x = np.array([1, 2, 3, 4, 5])
+y = np.array([1, 8, 27, 64, 125])
+plt.step(x, y)
+plt.show()
+
+
+
+## 45. Draw fourier series using matplotlib
+
+import matplotlib.pyplot as plt
+from scipy.signal import square
+L = 1
+x = np.arange(-L,L,0.001)
+y = square(2*np.pi*x)
+plt.plot(x,y,'r--')
+plt.title("fourier series for square wave ")
+plt.show()
+
+
+
+## 46. Find all the urls in a data in a file
+
+file_1 = open("URL.txt")
+lines=[]
+for line in file_1:
+    lines.append(line.split('\n')[0])
+print('file_1 content: ', lines)
+URLs = []
+for line in lines:
+    if (line[-4:] == '.com') or (line[-4:] == '.org') or (line[-3:] == '.in') or (line[-6:] == '.co.in'):
+        URLs.append(line)
+print()
+print('All URLs in file_1: ', URLs)
+
+
+
+## 47. Find all the headings in the data in a file.
+
+import requests
+from bs4 import BeautifulSoup
+url_link = 'https://github.com/Jio-Training-2022/Deep_Assignment/edit/main/Day_13_Exercise'
+request = requests.get(url_link)
+Soup = BeautifulSoup(request.text, 'lxml')
+heading_tags = ["h1", "h2", "h3"]
+for tags in Soup.find_all(heading_tags):
+    print(tags.name + ' -> ' + tags.text.strip())
+
+
+
+## 48. Read all the files in a directory and print them.
+
+import os
+path = "C://Users//DELL//OneDrive//Desktop//Quarter_1//Python//Homework"
+dir_list = os.listdir(path)
+print("Files and directories in '", path, "' :")
+print(dir_list)
+
+
+
+## 49. Find out the parent directory of a directory.
+
+import os
+path = os.getcwd()
+print("Current Directory path:", path)
+print("Parent Directory path:", os.path.abspath(os.path.join(path, os.pardir)))
+
+
+
+## 50. Find the factorial of a number.
+
+input_number = int(input("Please Enter a number to find its Factorial value: "))
+initial = 1
+for i in range(input_number):
+    initial *= (i+1)
+print('Factorial of {} is {}'.format(input_number, initial))
